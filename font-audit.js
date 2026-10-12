@@ -13,3 +13,5 @@ bind('delayed',async()=>{log('delayed-scheduled',{delayMs:8000});setTimeout(()=>
 bind('reload',()=>location.reload());
 log('environment',{userAgent:navigator.userAgent,language:navigator.language,secureContext:isSecureContext,origin:location.origin});
 state().catch(e=>log('error',{action:'initial-state',name:e.name,message:e.message}));
+
+bind('second',async()=>{if(fonts.length<2)throw new Error('Enumerate successfully first.');log('second-blob-start',{index:1});const blob=await fonts[1].blob();const bytes=await blob.arrayBuffer();log('second-blob-result',{index:1,blobSize:blob.size,arrayBufferBytes:bytes.byteLength});});
